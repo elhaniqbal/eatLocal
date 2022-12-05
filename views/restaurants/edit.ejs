@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Edit Restaurant</title>
+</head>
+<body>
+    <% layout('/layouts/boilerplate') %>
+    
+
+        <div class="row">
+            <h1 class="text-center">Edit Restaurant</h1>
+            <div class="col-6 offset-3">
+                <form action="/restaurants/<%=restaurant._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+        
+                    <div class="mb-3">
+            
+                        <label class ="form-label"   for="name"> Name </label>
+                        <input class="form-control" type="text"  id="name" name="restaurant[name]" value="<%=restaurant.name%>" required>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                    </div>
+            
+                    <div class="mb-3">
+                        <label class ="form-label"  for="cuisine"> Cuisine </label>
+                        <input class="form-control" type="text"  id="cuisine" name="restaurant[cuisine]" value="<%=restaurant.cuisine%>" required>
+                        <div class="valid-feedback">
+                            Yum!
+                        </div>
+                    </div>
+            
+                    <div class="mb-3">
+            
+                        <label class ="form-label"  for="address"> Address </label>
+                        <input class="form-control" type="text"  id="address" name="restaurant[address]" value="<%=restaurant.address%>" required>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+            
+                        <label class ="form-label"  for="description"> Description </label>
+                        <textarea class="form-control" type="text"  id="description" name="restaurant[description]" required> <%=restaurant.description%> </textarea>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+            
+                        <label class ="form-label"  for="iamge"> Image URL </label>
+                        <input class="form-control" type="text"  id="image" name="restaurant[image]" value="<%=restaurant.image%>" required>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <button class="btn btn-primary btn-info">
+                            Update Restaurant
+                        </button>
+
+                    </div>
+                    
+            
+                </form>
+            </div>
+           </div>
+    </form>
+
+    <footer>
+        <a href="/restaurants/"> Back To Restaurants</a>
+    </footer>
+    
+</body>
+</html>
+
+
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>

@@ -1,0 +1,57 @@
+module.exports.descriptors = [
+    'Holy',
+    'The Jolly',
+    '24/7',
+    'The Hungry',
+    'The Fat',
+    'The Roaring',
+    'Real',
+    'The Authentic',
+    'The Deep',
+    'The Mysterious',
+    'The Enigmatic',
+    'The Secret',
+
+];
+
+module.exports.attachments = [
+    'Tandoori',
+    'Smoke',
+    'Palace',
+    'World',
+    'Lettuce',
+    'Banana Leaf',
+    'Diamond',
+    'Oven',
+    'Camp',
+    'Desert Rose',
+    'Spot',
+    'Bakery',
+    'Inn',
+    'Restora',
+    'Spot',
+    'Spoon',
+    'Fork'
+]
+
+module.exports.cuisines = [
+    'Bangladeshi',
+    'Indian',
+    'Pakistani',
+    'Sri Lankan',
+    'Mexican',
+    'Korean',
+    'Japanese',
+    'Italian',
+    'Louisiana',
+    'Italian',
+    'Dutch',
+    'French',
+    'Nepali',
+    'Russian',
+    'Spanish',
+    'Brazilian',
+    'Mongolian',
+    'Vietnamese',
+    'Malaysian'
+];

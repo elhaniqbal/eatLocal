@@ -1,0 +1,90 @@
+<body>
+   <% layout('/layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <img src="<%=restaurant.image%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= restaurant.name %></h5>
+                  <p class="card-text"><%= restaurant.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= restaurant.cuisine %></li>
+                  <li class="list-group-item text-muted" ><%= restaurant.address %></li>
+                </ul>
+                
+                <div class="card-body mt-3">
+                  <% if(currentUser && restaurant.author.equals(currentUser._id)) { %> 
+                    <a href="/restaurants/<%= restaurant._id%>/edit" class="card-link btn btn-warning">Edit</a>
+
+                    <form class="d-inline" action="/restaurants/<%= restaurant._id%>/?_method=DELETE" method="POST"> 
+                        <button class="btn btn-danger">DELETE</button>
+                    </form>
+                    <% } %> 
+                </div>
+                
+          </div>
+      </div>
+      <div class="col-6 mt-3 mb-3">
+        <div class="card">
+          <div class="card-body">
+                  <h4 class="card-title text-muted">Please Consider Submitting A Review!</h4>
+                  <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Submit A  Review
+                  </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/restaurants/<%=restaurant._id%>/reviews" method="post" id="reviewForm" class="validated-form" novalidate name="reviewForm">
+                            <input type="number" min="0" max="10" class="form-control" placeholder="How Much Would You Rate This Place Out of 10?" name="review[rating]" required> <br>
+                            <div class="valid-feedback">
+                              Sounds Good!
+                          </div>
+                            <label for="review" class="form-label">What Makes This Place Authentic?</label> <br> 
+                            <textarea type="text" id="review" class="form-control" name="review[body]" required> </textarea>
+                            <div class="valid-feedback">
+                              Alright!
+                          </div> 
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-outline-success" id="submitButton" form="reviewForm">Submit</button>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Reviews</h3>
+  <% for (let review of restaurant.reviews) { %>
+  
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3>Rating: <%= review.rating %></h3>
+        <h6 class="card-subtitle mb-2 text-muted"> By <%= review.author.username %> </h6>
+        <p>Review: <%= review.body %></p>
+      </div>
+      <div class="card-footer">
+        <% if(currentUser && review.author.equals(currentUser._id)){ %> 
+        <form action="/restaurants/<%=restaurant._id%>/reviews/<%=review._id%>/?_method=DELETE" method="post">
+          <button class="btn btn-sm btn-outline-danger">Delete</button>
+        </form>
+        <% } %> 
+      </div>
+    </div>
+  <% } %>
+    </div>
+      </div>
+      
+    </div>
+
+    
+</body>
+</html>
+
